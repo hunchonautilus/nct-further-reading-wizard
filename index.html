@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Further Reading Wizard</title>
+        <style>
+            body {
+	            font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+	            padding: 0;
+                margin:auto;
+	            display: block;
+	            background-color: #BFE6FF;
+                text-align:center;
+                align-items:center;
+            }
+            textarea {
+                resize: none;
+                width:500px;
+                height:367.133px;
+            }
+            .main_box{
+                margin-left:auto;
+                margin-right:auto;
+                overflow:auto;
+            }
+            #recommended_reading_box {
+                width:871.967px;
+                height:367.133px;
+                border:medium double;
+                background-color:#f9f9f9;
+                padding-bottom:.5em;
+                border-color:#c9C9C9;
+                font-size:0.8125em;
+            }
+
+            #recommended_reading_box p {
+                margin-top:.5em;
+                margin-bottom:.5em;
+            }
+
+            #recommended_reading_box h4 {
+                margin-top: 1em;
+                text-decoration: underline;
+            }
+        </style>
+        <script>
+
+            function realTime(){
+                var text = document.getElementById("reading_code");
+                document.getElementById("recommended_reading_box").innerHTML = text.value;
+            }
+            window.onload = function() {
+                realTime();
+            }
+
+            function clearText(){
+                var text = document.getElementById("reading_code");
+                text.value = "";
+                realTime();
+            }
+
+            function defaultText(){
+                var text = document.getElementById("reading_code");
+                text.value = "<h4>Header</h4><a href='http://www.livingroomcandidate.org/websites/cg96/' target='_blank'>Clinton/Gore '96 Website</a><br><a href='http://www.dolekemp96.org/main.htm' target='_blank'>Dole/Kemp '96 Website</a><h4>Lore</h4><p>Four score and seven years ago...<br>Whatever. you gotta be one hell of a Jimmy to edit html in here lmao<br><br><img src='https://i.imgur.com/i9PSxtG.png' width='120px'></img><br><br>Use this default text as a formatting example. Have fun</p>";
+                realTime();
+            }
+
+            function roger(){
+                var text = document.getElementById("recommended_reading_box").innerHTML;
+                var clippings = text.replace(/"/g, "\\\\\\\"");
+                navigator.clipboard.writeText(clippings);
+                console.log(clippings);
+                console.log("roger");
+                alert("Copied successfully");
+            }
+        </script>
+    </head>
+    <body>
+        <h3 style="margin-bottom:0em;">Further Reading Wizard by /u/astrohunch_o</h3>
+        <small><p>Preview how this section of your mod will look before implementing it</p></small>
+        <div class="main_box">
+        <table style="margin-left:auto;margin-right:auto;">
+        <tr>
+        <td><textarea id="reading_code" name="reading_code" rows="25" oninput="realTime()"><h4>Header</h4><a href='http://www.livingroomcandidate.org/websites/cg96/' target='_blank'>Clinton/Gore '96 Website</a><br><a href='http://www.dolekemp96.org/main.htm' target='_blank'>Dole/Kemp '96 Website</a><h4>Lore</h4><p>Four score and seven years ago...<br>Whatever. you gotta be one hell of a Jimmy to edit html in here lmao<br><br><img src='https://i.imgur.com/i9PSxtG.png' width='120px'></img><br><br>Use this default text as a formatting example. Have fun</p></textarea></td>
+        <td><div id="recommended_reading_box"><h4>Header</h4><a href='http://www.livingroomcandidate.org/websites/cg96/' target='_blank'>Clinton/Gore '96 Website</a><br><a href='http://www.dolekemp96.org/main.htm' target='_blank'>Dole/Kemp '96 Website</a><h4>Lore</h4><p>Four score and seven years ago...<br>Whatever. you gotta be one hell of a Jimmy to edit html in here lmao<br><br><img src='https://i.imgur.com/i9PSxtG.png' width='120px'></img><br><br>Use this default text as a formatting example. Have fun</p></div></td>
+        </tr>
+        </table></div><br>
+        <button onclick="clearText()"title="Clears text box">Clear</button>      <button onclick="defaultText()" title="Reverts to default template with multimedia">Default</button>        <button onclick="roger()" title="Copies in a format ready for use in your Code 1">Copy (Code Ready)</button>
+    </body>
+</html>
