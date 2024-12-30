@@ -45,7 +45,7 @@
         <script>
 
             function realTime(){
-                var text = document.getElementById("reading_code");
+                let text = document.getElementById("reading_code");
                 document.getElementById("recommended_reading_box").innerHTML = text.value;
             }
             window.onload = function() {
@@ -53,20 +53,24 @@
             }
 
             function clearText(){
-                var text = document.getElementById("reading_code");
+                let text = document.getElementById("reading_code");
                 text.value = "";
                 realTime();
             }
 
             function defaultText(){
-                var text = document.getElementById("reading_code");
+                let text = document.getElementById("reading_code");
                 text.value = "<h4 style=\"margin-top: 0.5em;\">Header</h4><a href=\"http://www.livingroomcandidate.org/websites/cg96/\" target=\"_blank\">Clinton/Gore '96 Website</a><br><a href=\"http://www.dolekemp96.org/main.htm\" target=\"_blank\">Dole/Kemp '96 Website</a><h4>Lore</h4><p>Four score and seven years ago...<br>Whatever. you gotta be one hell of a Jimmy to edit html in here lmao<br><br><img src=\"https://i.imgur.com/i9PSxtG.png\" width=\"120px\"></img><br><br>Use this default text as a formatting example. Have fun</p>";
                 realTime();
             }
 
             function roger(){
-                var text = document.getElementById("recommended_reading_box").innerHTML;
-                var clippings = text.replace(/"/g, "\\\\\\\"");
+                let q_val = "\\\\\\\"";
+                let text = document.getElementById("recommended_reading_box").innerHTML;
+                if(document.getElementById("exp").checked){
+                    q_val = "\\\"";
+                }
+                let clippings = text.replace(/"/g, q_val);
                 navigator.clipboard.writeText(clippings);
                 console.log(clippings);
                 console.log("roger");
@@ -85,5 +89,7 @@
         </tr>
         </table></div><br>
         <button onclick="clearText()"title="Clears text box">Clear</button>      <button onclick="defaultText()" title="Reverts to default template with multimedia">Default</button>        <button onclick="roger()" title="Copies in a format ready for use in your Code 1">Copy (Code Ready)</button>
+        <br>
+        <div style="font-size:0.75em;"><input type="checkbox" name="exp" value="exp" id="exp" onchange=""><label for="exp">My code does not use <span style="font-family:monospace;font-size:1.25em;">JSON.parse</span> (Check if using Jet's or some other tool)</label></div>
     </body>
 </html>
